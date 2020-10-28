@@ -1,7 +1,6 @@
 import React from "react";
 
 export default function Header(props) {
-  
   return (
     <main className="appointment__add">
       <img
