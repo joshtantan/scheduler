@@ -29,15 +29,15 @@ storiesOf("Button", module)
   ));
 
 storiesOf("DayListItem", module)
-.addParameters({
-  backgrounds: [{ name: "dark", value: "#222f3e", default: true }]
-})
-.add("Unselected", () => <DayListItem name="Monday" spots={5} />)
-.add("Selected", () => <DayListItem name="Monday" spots={5} selected />) 
-.add("Full", () => <DayListItem name="Monday" spots={0} />)
-.add("Clickable", () => (
-  <DayListItem name="Tuesday" setDay={event => action("setDay")("Tuesday")} spots={5} />
-));
+  .addParameters({
+    backgrounds: [{ name: "dark", value: "#222f3e", default: true }]
+  })
+  .add("Unselected", () => <DayListItem name="Monday" spots={5} />)
+  .add("Selected", () => <DayListItem name="Monday" spots={5} selected />) 
+  .add("Full", () => <DayListItem name="Monday" spots={0} />)
+  .add("Clickable", () => (
+    <DayListItem name="Tuesday" setDay={event => action("setDay")("Tuesday")} spots={5} />
+  ));
 
 const days = [
   {
@@ -127,3 +127,10 @@ storiesOf("InterviewerList", module)
       setInterviewer={action("setInterviewer")}
     />
   ));
+
+storiesOf("Appointment", module)
+  .addParameters({
+    backgrounds: [{ name: "white", value: "#fff", default: true }]
+  })
+  .add("Control", () => <Appointment />)
+  .add("Timed", () => <Appointment time="12pm" />);
