@@ -12,7 +12,7 @@ export default function InterviewerList(props) {
       name={eachInterviewer.name}
       avatar={eachInterviewer.avatar}
       selected={eachInterviewer.id === interviewer}
-      setInterviewer={setInterviewer}
+      setInterviewer={() => setInterviewer(eachInterviewer.id)}
     />
   ));
 

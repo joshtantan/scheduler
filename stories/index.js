@@ -35,7 +35,7 @@ storiesOf("DayListItem", module)
 .add("Selected", () => <DayListItem name="Monday" spots={5} selected />) 
 .add("Full", () => <DayListItem name="Monday" spots={0} />)
 .add("Clickable", () => (
-  <DayListItem name="Tuesday" setDay={action("setDay")} spots={5} />
+  <DayListItem name="Tuesday" setDay={event => action("setDay")("Tuesday")} spots={5} />
 ));
 
 const days = [
@@ -97,7 +97,7 @@ storiesOf("InterviewerListItem", module)
       id={interviewer.id}
       name={interviewer.name}
       avatar={interviewer.avatar}
-      setInterviewer={action("setInterviewer")}
+      setInterviewer={event => action("setInterviewer")(interviewer.id)}
     />
   ));
 
