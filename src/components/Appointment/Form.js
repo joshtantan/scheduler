@@ -2,7 +2,6 @@ import React, {useState} from "react";
 
 import Button from "components/Button";
 import InterviewerList from "components/InterviewerList";
-import { action } from "@storybook/addon-actions/dist/preview";
 
 export default function Form(props) {
   const { interviewers, onSave, onCancel } = props;
