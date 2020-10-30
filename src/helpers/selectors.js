@@ -11,7 +11,9 @@ export function getAppointmentsForDay(state, day) {
 
   const appointmentsState = state.appointments;
   for (const appointmentID of appointmentIDs) {
-    appointments.push(appointmentsState[appointmentID]);
+    if(appointmentsState[appointmentID]) {
+      appointments.push(appointmentsState[appointmentID]);
+    }
   }
 
   return appointments;
