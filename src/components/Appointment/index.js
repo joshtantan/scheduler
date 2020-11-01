@@ -13,6 +13,7 @@ import Confirm from "components/Appointment/Confirm";
 const EMPTY = "EMPTY";
 const SHOW = "SHOW";
 const CREATE = "CREATE";
+const EDIT = "EDIT";
 const SAVING = "SAVING";
 const DELETING = "DELETING";
 const CONFIRM = "CONFIRM";
@@ -53,6 +54,10 @@ export default function Appointment(props) {
       });
   };
 
+  const edit = () => {
+    transition(EDIT);
+  }
+
   const interviewerName = id => {
     for (const interviewer of interviewers) {
       if (interviewer.id === id) {
@@ -74,10 +79,20 @@ export default function Appointment(props) {
           student={interview.student}
           interviewer={interviewerName(interview.interviewer)}
           onDelete={removePending}
+          onEdit={edit}
         />
       )}
       {mode === CREATE && (
         <Form
+          interviewers={interviewers}
+          onCancel={() => back()}
+          onSave={save}
+        />
+      )}
+      {mode === EDIT && (
+        <Form
+          name={interview.student}
+          interviewer={interview.interviewer}
           interviewers={interviewers}
           onCancel={() => back()}
           onSave={save}
