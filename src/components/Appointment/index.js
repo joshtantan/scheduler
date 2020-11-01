@@ -41,10 +41,10 @@ export default function Appointment(props) {
     transition(DELETING);
 
     cancelInterview(id)
-    .then(transition(EMPTY))
-    .catch(err => {
-      console.error(err);
-    });
+      .then(transition(EMPTY))
+      .catch(err => {
+        console.error(err);
+      });
   };
 
   return (

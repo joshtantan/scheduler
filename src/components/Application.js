@@ -55,7 +55,7 @@ export default function Application(props) {
       .catch(err => {
         console.error(err);
       });
-  }
+  };
 
   useEffect(() => {
     const daysPromise = axios.get(daysURL);
