@@ -5,7 +5,7 @@ import "components/Application.scss";
 
 import DayList from "components/DayList";
 import Appointment from "components/Appointment";
-import { getAppointmentsForDay, getInterview } from "../helpers/selectors";
+import { getAppointmentsForDay, getInterviewersForDay, getInterview } from "../helpers/selectors";
 
 const daysURL = "http://localhost:8001/api/days";
 const appointmentsURL = "http://localhost:8001/api/appointments";
@@ -36,16 +36,18 @@ export default function Application(props) {
       });
   }, []);
 
-  const dailyAppointments = getAppointmentsForDay(state, state.day)
+  const dailyAppointments = getAppointmentsForDay(state, state.day);
   
   const schedule = dailyAppointments.map(appointment => {
     const interview = getInterview(state, appointment.interview);
+    const interviewers = getInterviewersForDay(state, state.day);
 
     return (
     <Appointment 
       key={appointment.id} 
       id={appointment.id} 
       interview={interview}
+      interviewers={interviewers}
       {...appointment}
     />);
   });
