@@ -53,6 +53,14 @@ export default function Appointment(props) {
       });
   };
 
+  const interviewerName = id => {
+    for (const interviewer of interviewers) {
+      if (interviewer.id === id) {
+        return interviewer.name;
+      }
+    }
+  };
+
   return (
     <article className="appointment">
       <Header time={time} />
@@ -64,7 +72,7 @@ export default function Appointment(props) {
       {mode === SHOW && (
         <Show
           student={interview.student}
-          interviewer={interview.interviewer}
+          interviewer={interviewerName(interview.interviewer)}
           onDelete={removePending}
         />
       )}
