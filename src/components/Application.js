@@ -69,6 +69,9 @@ export default function Application(props) {
         const interviewers = res3.data;
         
         setState(prev => ({ ...prev, days, appointments, interviewers }));
+      })
+      .catch(err => {
+        console.error(err);
       });
   }, []);
 
