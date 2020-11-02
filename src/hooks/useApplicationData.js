@@ -14,8 +14,28 @@ export default function useApplicationData() {
   });
 
   const setDay = day => setState({ ...state, day });
-  
+
   const bookInterview = (id, interview) => {
+    let dayID;
+
+    if (id >= 1 && id <= 5) {
+      dayID = 0;
+    } else if (id >= 6 && id <= 10) {
+      dayID = 1;
+    } else if (id >= 11 && id <= 15) {
+      dayID = 2;
+    } else if (id >= 16 && id <= 20) {
+      dayID = 3;
+    } else if (id >= 21 && id <= 25) {
+      dayID = 4;
+    }
+
+    let day = { ...state.days[dayID] };
+    day.spots--;
+
+    const days = [...state.days];
+    days[dayID] = day;
+
     const appointment = {
       ...state.appointments[id],
       interview: { ...interview }
@@ -26,13 +46,33 @@ export default function useApplicationData() {
       [id]: appointment
     };
 
-    return axios.put(`http://localhost:8001/api/appointments/${id}`, {interview})
+    return axios.put(`http://localhost:8001/api/appointments/${id}`, { interview })
       .then(() => {
-        setState(prev => ({ ...prev, appointments }));
+        setState(prev => ({ ...prev, appointments, days }));
       });
   };
 
   const cancelInterview = id => {
+    let dayID;
+
+    if (id >= 1 && id <= 5) {
+      dayID = 0;
+    } else if (id >= 6 && id <= 10) {
+      dayID = 1;
+    } else if (id >= 11 && id <= 15) {
+      dayID = 2;
+    } else if (id >= 16 && id <= 20) {
+      dayID = 3;
+    } else if (id >= 21 && id <= 25) {
+      dayID = 4;
+    }
+
+    let day = { ...state.days[dayID] };
+    day.spots++;
+
+    const days = [...state.days];
+    days[dayID] = day;
+
     const appointment = {
       ...state.appointments[id],
       interview: null
@@ -45,7 +85,7 @@ export default function useApplicationData() {
 
     return axios.delete(`http://localhost:8001/api/appointments/${id}`)
       .then(() => {
-        setState(prev => ({ ...prev, appointments }));
+        setState(prev => ({ ...prev, appointments, days }));
       });
   };
 
@@ -59,7 +99,7 @@ export default function useApplicationData() {
         const days = res1.data;
         const appointments = res2.data;
         const interviewers = res3.data;
-        
+
         setState(prev => ({ ...prev, days, appointments, interviewers }));
       })
       .catch(err => {
