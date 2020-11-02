@@ -33,9 +33,8 @@ export default function Application(props) {
     };
 
     return axios.put(`http://localhost:8001/api/appointments/${id}`, {interview})
-      .then(setState(prev => ({ ...prev, appointments })))
-      .catch(err => {
-        console.error(err);
+      .then(() => {
+        setState(prev => ({ ...prev, appointments }));
       });
   };
 
@@ -51,9 +50,8 @@ export default function Application(props) {
     };
 
     return axios.delete(`http://localhost:8001/api/appointments/${id}`)
-      .then(setState(prev => ({ ...prev, appointments })))
-      .catch(err => {
-        console.error(err);
+      .then(() => {
+        setState(prev => ({ ...prev, appointments }));
       });
   };
 
