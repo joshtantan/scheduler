@@ -1,9 +1,9 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
 
-const daysURL = "http://localhost:8001/api/days";
-const appointmentsURL = "http://localhost:8001/api/appointments";
-const interviewersURL = "http://localhost:8001/api/interviewers";
+const daysURL = "/api/days";
+const appointmentsURL = "/api/appointments";
+const interviewersURL = "/api/interviewers";
 
 export default function useApplicationData() {
   const [state, setState] = useState({
@@ -46,7 +46,7 @@ export default function useApplicationData() {
       [id]: appointment
     };
 
-    return axios.put(`http://localhost:8001/api/appointments/${id}`, { interview })
+    return axios.put(`/api/appointments/${id}`, { interview })
       .then(() => {
         setState(prev => ({ ...prev, appointments, days }));
       });
@@ -83,7 +83,7 @@ export default function useApplicationData() {
       [id]: appointment
     };
 
-    return axios.delete(`http://localhost:8001/api/appointments/${id}`)
+    return axios.delete(`/api/appointments/${id}`)
       .then(() => {
         setState(prev => ({ ...prev, appointments, days }));
       });
