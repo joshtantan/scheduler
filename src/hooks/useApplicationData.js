@@ -16,75 +16,78 @@ export default function useApplicationData() {
   const setDay = day => setState({ ...state, day });
 
   const bookInterview = (id, interview) => {
-    let dayID;
-
-    if (id >= 1 && id <= 5) {
-      dayID = 0;
-    } else if (id >= 6 && id <= 10) {
-      dayID = 1;
-    } else if (id >= 11 && id <= 15) {
-      dayID = 2;
-    } else if (id >= 16 && id <= 20) {
-      dayID = 3;
-    } else if (id >= 21 && id <= 25) {
-      dayID = 4;
-    }
-
-    let day = { ...state.days[dayID] };
-    day.spots--;
-
-    const days = [...state.days];
-    days[dayID] = day;
-
-    const appointment = {
-      ...state.appointments[id],
-      interview: { ...interview }
-    };
-
-    const appointments = {
-      ...state.appointments,
-      [id]: appointment
-    };
 
     return axios.put(`/api/appointments/${id}`, { interview })
       .then(() => {
+        let dayID;
+
+        if (id >= 1 && id <= 5) {
+          dayID = 0;
+        } else if (id >= 6 && id <= 10) {
+          dayID = 1;
+        } else if (id >= 11 && id <= 15) {
+          dayID = 2;
+        } else if (id >= 16 && id <= 20) {
+          dayID = 3;
+        } else if (id >= 21 && id <= 25) {
+          dayID = 4;
+        }
+
+        let day = { ...state.days[dayID] };
+
+        if (!state.appointments[id].interview) {
+          day.spots--;
+        }
+
+        const days = [...state.days];
+        days[dayID] = day;
+
+        const appointment = {
+          ...state.appointments[id],
+          interview: { ...interview }
+        };
+
+        const appointments = {
+          ...state.appointments,
+          [id]: appointment
+        };
         setState(prev => ({ ...prev, appointments, days }));
       });
   };
 
   const cancelInterview = id => {
-    let dayID;
-
-    if (id >= 1 && id <= 5) {
-      dayID = 0;
-    } else if (id >= 6 && id <= 10) {
-      dayID = 1;
-    } else if (id >= 11 && id <= 15) {
-      dayID = 2;
-    } else if (id >= 16 && id <= 20) {
-      dayID = 3;
-    } else if (id >= 21 && id <= 25) {
-      dayID = 4;
-    }
-
-    let day = { ...state.days[dayID] };
-    day.spots++;
-
-    const days = [...state.days];
-    days[dayID] = day;
-
-    const appointment = {
-      ...state.appointments[id],
-      interview: null
-    };
-
-    const appointments = {
-      ...state.appointments,
-      [id]: appointment
-    };
 
     return axios.delete(`/api/appointments/${id}`)
       .then(() => {
+        let dayID;
+
+        if (id >= 1 && id <= 5) {
+          dayID = 0;
+        } else if (id >= 6 && id <= 10) {
+          dayID = 1;
+        } else if (id >= 11 && id <= 15) {
+          dayID = 2;
+        } else if (id >= 16 && id <= 20) {
+          dayID = 3;
+        } else if (id >= 21 && id <= 25) {
+          dayID = 4;
+        }
+
+        let day = { ...state.days[dayID] };
+        day.spots++;
+
+        const days = [...state.days];
+        days[dayID] = day;
+
+        const appointment = {
+          ...state.appointments[id],
+          interview: null
+        };
+
+        const appointments = {
+          ...state.appointments,
+          [id]: appointment
+        };
         setState(prev => ({ ...prev, appointments, days }));
       });
   };
