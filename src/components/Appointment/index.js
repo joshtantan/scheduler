@@ -23,7 +23,7 @@ const ERROR_DELETE = "ERROR_DELETE";
 
 export default function Appointment(props) {
   const { id, time, interview, interviewers, bookInterview, cancelInterview } = props;
-  
+
   const { mode, transition, back } = useVisualMode(
     interview ? SHOW : EMPTY
   );
@@ -48,7 +48,7 @@ export default function Appointment(props) {
 
   const removePending = () => {
     transition(CONFIRM);
-  }
+  };
 
   const removeConfirmed = () => {
     transition(DELETING, true);
@@ -65,7 +65,7 @@ export default function Appointment(props) {
 
   const edit = () => {
     transition(EDIT);
-  }
+  };
 
   const interviewerName = id => {
     for (const interviewer of interviewers) {
@@ -76,11 +76,11 @@ export default function Appointment(props) {
   };
 
   return (
-    <article className="appointment">
+    <article className="appointment" data-testid="appointment">
       <Header time={time} />
       {mode === EMPTY && (
-        <Empty 
-          onAdd={() => transition(CREATE)} 
+        <Empty
+          onAdd={() => transition(CREATE)}
         />
       )}
       {mode === SHOW && (
