@@ -1,23 +1,45 @@
 # Interview Scheduler
 
-## Setup
+The Interview Scheduler is a resilient and responsive front end client web application built using React that allows users to book, edit, and cancel interviews. The back end database API is managed by this [server]](https://github.com/joshtantan/scheduler-api).
 
-Install dependencies with `npm install`.
+## Final Product
 
-## Running Webpack Development Server
+### Dashboard
+!["Screenshot of dashboard"](https://github.com/joshtantan/scheduler/blob/master/docs/dashboard.png) 
 
-```sh
-npm start
+### Booking Appointments
+!["Screengrab of booking an appointment"](https://github.com/joshtantan/scheduler/blob/master/docs/book_appointment.mov)
+
+### Editing Appointments
+!["Screengrab of editing an appointment"](https://github.com/joshtantan/scheduler/blob/master/docs/edit_appointment.mov)
+
+### Canceling Appointments
+!["Screengrab of canceling an appointment"](https://github.com/joshtantan/scheduler/blob/master/docs/delete_appointment.mov)
+
+### Error Resilience in Editing Appointments
+!["Screengrab of error resilience in editing an appointment"](https://github.com/joshtantan/scheduler/blob/master/docs/edit_appointment_error.mov)
+
+### Error Resilience in Canceling Appointments
+!["Screengrab of error resilience in canceling an appointment"](https://github.com/joshtantan/scheduler/blob/master/docs/delete_appointment_error.mov)
+
+## Dependencies
+
+- `axios`
+- `classnames`
+- `normalize.css`
+- `react`
+- `react-dom`
+- `react-hooks-testing-library`
+- `react-scripts`
+
+## Runtime Usage
+
+> All commands are run from the project root directory
+1. Install all dependencies before first use
+```shell
+$ npm i
 ```
-
-## Running Jest Test Framework
-
-```sh
-npm test
-```
-
-## Running Storybook Visual Testbed
-
-```sh
-npm run storybook
+2. Start the web server
+```shell
+$ npm start
 ```
