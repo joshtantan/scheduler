@@ -13,29 +13,11 @@ function getAppointmentsForDay(state, day) {
 }
 
 function getInterviewersForDay(state, day) {
-  const interviewers = [];
-  const appointments = getAppointmentsForDay(state, day);
-  
-  for (const appointment of appointments) {
-    let interviewerID;
-
-    if (appointment.interview) {
-      interviewerID = appointment.interview.interviewer;
-
-      if (!interviewers.includes(interviewerID)) {
-        interviewers.push(interviewerID);
-      }
-    }
+  const dayItem = state.days.find(dayEntry => dayEntry.name === day);
+  if (!dayItem) {
+    return [];
   }
-
-  const interviewersState = state.interviewers;
-  return interviewers.map(id => {
-    if (interviewersState[id]) {
-      return interviewersState[id];
-    } else {
-      return undefined;
-    }
-  });
+  return dayItem.interviewers.map(interviewerID => state.interviewers[interviewerID]);
 }
 
 function getInterview(state, interview) {
@@ -44,8 +26,8 @@ function getInterview(state, interview) {
   const interviewerID = interview.interviewer;
   const student = interview.student;
   const interviewersState = state.interviewers;
-  let interviewResult = {student};
-  
+  let interviewResult = { student };
+
   for (const interviewerState in interviewersState) {
     if (interviewersState[interviewerState].id === interviewerID) {
       interviewResult["interviewer"] = interviewersState[interviewerState];
