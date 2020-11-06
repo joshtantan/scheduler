@@ -1,6 +1,6 @@
 # Interview Scheduler
 
-The Interview Scheduler is a resilient and responsive front end client web application built using React that allows users to book, edit, and cancel interviews. The back end database API is managed by this [server]](https://github.com/joshtantan/scheduler-api).
+The Interview Scheduler is a resilient and responsive front end client web application built using React that allows users to book, edit, and cancel interviews. The back end database API is managed by this [server](https://github.com/joshtantan/scheduler-api).
 
 ## Final Product
 
